@@ -1,11 +1,11 @@
-import { onUpdateState, updateState } from './state.mjs'
+import { onStateChange, setState } from './state/index.mjs'
 
 const input = document.getElementById('message')
 
 input.addEventListener('keyup', () => {
-  updateState(input.value)
+  setState(input.value)
 })
 
-onUpdateState((value) => {
+onStateChange((value) => {
   input.value = value
 })

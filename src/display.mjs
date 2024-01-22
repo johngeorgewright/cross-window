@@ -1,8 +1,8 @@
-import { onUpdateState } from './state.mjs'
+import { onStateChange } from './state/index.mjs'
 
 const display = document.getElementById('display')
 
-onUpdateState((value) => {
+onStateChange((value) => {
   display.innerText = value 
 })
 
