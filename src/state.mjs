@@ -4,12 +4,8 @@ let state = localStorage.getItem(STORAGE_KEY) ?? ''
 
 const listeners = []
 
-onUpdateState((value) => {
-  if (value !== state) {
-    state = value
-    localStorage.setItem(STORAGE_KEY, value)
-  }
-})
+onUpdateState((value) => { state = value })
+onUpdateState((value) => localStorage.setItem(STORAGE_KEY, value))
 
 addEventListener('storage', (event) => {
   if (event.key === STORAGE_KEY) updateState(event.newValue)
@@ -20,6 +16,7 @@ export function onUpdateState(listener) {
   listener(state)
 }
 
-export function updateState(state) {
-  for (const listener of listeners) listener(state)
+export function updateState($state) {
+  if ($state !== state)
+    for (const listener of listeners) listener($state)
 }
